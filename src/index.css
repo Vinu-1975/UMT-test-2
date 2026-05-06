@@ -1,13 +1,26 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   UMT — Blueprint Atelier
+   Engineering telemetry × architectural drawing aesthetic.
+   - Display: Fraunces (editorial serif w/ optical size + soft axis)
+   - Mono / numerals: JetBrains Mono (tabular figures)
+   - Body: Geist (modern utility sans)
+   - Single signature accent: vermillion #D8472B (signal red)
+   ============================================================ */
+
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
+    --font-heading: 'Fraunces Variable', 'Cormorant Garamond', serif;
+    --font-sans: 'Geist Variable', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -16,11 +29,15 @@
     --color-sidebar-primary: var(--sidebar-primary);
     --color-sidebar-foreground: var(--sidebar-foreground);
     --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
+
     --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-chart-6: var(--chart-6);
+    --color-chart-7: var(--chart-7);
+
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
@@ -39,92 +56,285 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
+
+    --color-grid-line: var(--grid-line);
+    --color-blueprint: var(--blueprint);
+    --color-vermillion: var(--vermillion);
+    --color-bone: var(--bone);
+    --color-ink: var(--ink);
+
+    /* Architectural radii — much smaller than default shadcn, more like
+       drafted corners than soft pillows. */
+    --radius-sm: calc(var(--radius) * 0.4);
+    --radius-md: calc(var(--radius) * 0.7);
     --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+    --radius-xl: calc(var(--radius) * 1.6);
+    --radius-2xl: calc(var(--radius) * 2.2);
+    --radius-3xl: calc(var(--radius) * 3);
+    --radius-4xl: calc(var(--radius) * 3.8);
 }
 
+/* ---------- LIGHT (Bone / Paper) -------------------------------- */
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --radius: 0.3rem;
+
+    /* Paper-warm background, ink-warm foreground.
+       Slight cream cast distinguishes us from sterile-white SaaS. */
+    --background: oklch(0.965 0.012 85);
+    --foreground: oklch(0.18 0.012 60);
+
+    --card: oklch(0.99 0.008 90);
+    --card-foreground: oklch(0.18 0.012 60);
+
+    --popover: oklch(0.99 0.008 90);
+    --popover-foreground: oklch(0.18 0.012 60);
+
+    /* Primary = signal vermillion. Used sparingly, like ink stamps. */
+    --primary: oklch(0.58 0.175 32);
+    --primary-foreground: oklch(0.985 0.005 90);
+
+    --secondary: oklch(0.92 0.012 85);
+    --secondary-foreground: oklch(0.22 0.015 60);
+
+    --muted: oklch(0.93 0.014 85);
+    --muted-foreground: oklch(0.45 0.015 70);
+
+    --accent: oklch(0.91 0.018 85);
+    --accent-foreground: oklch(0.18 0.015 60);
+
+    --destructive: oklch(0.55 0.21 25);
+
+    --border: oklch(0.85 0.014 80);
+    --input: oklch(0.88 0.012 80);
+    --ring: oklch(0.58 0.175 32);
+
+    /* Engineering / scientific palette — warm + signal pairing.
+       Vermillion, blueprint, sage, ochre, plum, slate, gold. */
+    --chart-1: oklch(0.58 0.175 32);   /* vermillion */
+    --chart-2: oklch(0.50 0.10 240);   /* blueprint blue */
+    --chart-3: oklch(0.62 0.09 145);   /* sage green */
+    --chart-4: oklch(0.70 0.135 75);   /* ochre */
+    --chart-5: oklch(0.45 0.10 320);   /* plum */
+    --chart-6: oklch(0.42 0.02 250);   /* slate */
+    --chart-7: oklch(0.78 0.13 90);    /* gold */
+
+    --sidebar: oklch(0.945 0.014 85);
+    --sidebar-foreground: oklch(0.22 0.012 60);
+    --sidebar-primary: oklch(0.58 0.175 32);
+    --sidebar-primary-foreground: oklch(0.985 0.005 90);
+    --sidebar-accent: oklch(0.91 0.018 85);
+    --sidebar-accent-foreground: oklch(0.18 0.015 60);
+    --sidebar-border: oklch(0.85 0.014 80);
+    --sidebar-ring: oklch(0.58 0.175 32);
+
+    /* Custom design tokens for the Blueprint Atelier system */
+    --grid-line: oklch(0.85 0.014 80 / 0.6);
+    --blueprint: oklch(0.50 0.10 240);
+    --vermillion: oklch(0.58 0.175 32);
+    --bone: oklch(0.965 0.012 85);
+    --ink: oklch(0.18 0.012 60);
 }
 
+/* ---------- DARK (Ink / Console) -------------------------------- */
 .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+    --background: oklch(0.155 0.01 250);
+    --foreground: oklch(0.92 0.018 85);
+
+    --card: oklch(0.195 0.012 250);
+    --card-foreground: oklch(0.92 0.018 85);
+
+    --popover: oklch(0.205 0.012 250);
+    --popover-foreground: oklch(0.92 0.018 85);
+
+    --primary: oklch(0.68 0.175 35);
+    --primary-foreground: oklch(0.16 0.012 250);
+
+    --secondary: oklch(0.26 0.014 250);
+    --secondary-foreground: oklch(0.92 0.018 85);
+
+    --muted: oklch(0.235 0.012 250);
+    --muted-foreground: oklch(0.66 0.022 80);
+
+    --accent: oklch(0.28 0.018 250);
+    --accent-foreground: oklch(0.92 0.018 85);
+
+    --destructive: oklch(0.66 0.20 28);
+
+    --border: oklch(0.92 0.018 85 / 0.10);
+    --input: oklch(0.92 0.018 85 / 0.14);
+    --ring: oklch(0.68 0.175 35);
+
+    --chart-1: oklch(0.70 0.18 32);
+    --chart-2: oklch(0.65 0.13 235);
+    --chart-3: oklch(0.72 0.11 145);
+    --chart-4: oklch(0.78 0.14 75);
+    --chart-5: oklch(0.62 0.13 320);
+    --chart-6: oklch(0.62 0.02 250);
+    --chart-7: oklch(0.82 0.13 90);
+
+    --sidebar: oklch(0.18 0.011 250);
+    --sidebar-foreground: oklch(0.85 0.018 85);
+    --sidebar-primary: oklch(0.68 0.175 35);
+    --sidebar-primary-foreground: oklch(0.16 0.012 250);
+    --sidebar-accent: oklch(0.26 0.014 250);
+    --sidebar-accent-foreground: oklch(0.92 0.018 85);
+    --sidebar-border: oklch(0.92 0.018 85 / 0.10);
+    --sidebar-ring: oklch(0.68 0.175 35);
+
+    --grid-line: oklch(0.92 0.018 85 / 0.08);
+    --blueprint: oklch(0.65 0.13 235);
+    --vermillion: oklch(0.70 0.18 32);
+    --bone: oklch(0.92 0.018 85);
+    --ink: oklch(0.155 0.01 250);
 }
 
+/* ---------- BASE LAYER ----------------------------------------- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+    /* Tabular numerals globally — engineering data should not jitter. */
+    font-variant-numeric: tabular-nums;
+  }
   body {
-    @apply bg-background text-foreground;
-    }
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv11";
+  }
   html {
     @apply font-sans;
-    }
+  }
+  /* Fraunces tuning — wider optical size, lower softness gives
+     editorial gravitas without feeling stuffy. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-variation-settings: "opsz" 96, "SOFT" 30, "WONK" 0;
+    font-feature-settings: "ss01", "ss02";
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ---------- BLUEPRINT UTILITIES -------------------------------- */
+@layer utilities {
+
+  /* Hairline 1px border that survives high-DPI rendering. */
+  .hairline {
+    border-width: 1px;
+    border-color: var(--grid-line);
+  }
+
+  /* Architectural blueprint grid — used as ambient background. */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .blueprint-grid-fine {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  /* Subtle paper grain — gives the light theme physicality. */
+  .paper-grain {
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--grid-line) 0.5px, transparent 0);
+    background-size: 4px 4px;
+  }
+
+  /* Tick mark borders — like a draftsman's ruler. */
+  .ruler-top {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
+    background-size: 8px 100%;
+    background-repeat: repeat-x;
+    background-position: top;
+  }
+
+  /* Tabular-figure mono. */
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "zero" 1, "ss02" 1;
+  }
+
+  /* All-caps micro labels with technical letter-spacing. */
+  .micro {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .display {
+    font-family: var(--font-heading);
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+    letter-spacing: -0.025em;
+    line-height: 0.95;
+  }
+
+  /* The signature ticker scroll. */
+  @keyframes ticker-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+  .ticker-scroll {
+    animation: ticker-scroll 60s linear infinite;
+  }
+  .ticker-scroll:hover { animation-play-state: paused; }
+
+  /* Slow ambient pulse for "live" status dots. */
+  @keyframes signal-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--vermillion); opacity: 1; }
+    50%      { box-shadow: 0 0 0 6px transparent; opacity: 0.65; }
+  }
+  .signal-pulse {
+    animation: signal-pulse 1.8s ease-in-out infinite;
+  }
+
+  /* Page-load reveal — staggered via CSS vars. */
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translate3d(0, 8px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  .reveal {
+    animation: reveal-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+
+  /* Counter scrub — used on KPIs. */
+  @keyframes counter-scrub {
+    from { filter: blur(4px); opacity: 0; transform: translateY(6px); }
+    to   { filter: blur(0); opacity: 1; transform: translateY(0); }
+  }
+  .counter-in {
+    animation: counter-scrub 0.9s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+
+  /* Sweep highlight on chart hover. */
+  @keyframes sweep {
+    0%   { background-position: -120% 0; }
+    100% { background-position: 220% 0; }
+  }
+
+  /* Section markers — ◉────── 01 / OVERVIEW ──── */
+  .section-rule::before,
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--grid-line);
+  }
+
+  /* Subtle scrollbar for blueprint feel. */
+  .scroll-discreet::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scroll-discreet::-webkit-scrollbar-track { background: transparent; }
+  .scroll-discreet::-webkit-scrollbar-thumb {
+    background: var(--grid-line);
+    border-radius: 3px;
+  }
 }
